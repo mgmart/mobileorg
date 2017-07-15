@@ -122,5 +122,5 @@ vendor-libs
 Classes/Sync/Dropbox/DropboxKeys.h
 DropBoxKeys.xcconfig
 
-MobileOrg.xcworkspace
+MobileOrg.xcworkspace/xcuserdata
 Pods
