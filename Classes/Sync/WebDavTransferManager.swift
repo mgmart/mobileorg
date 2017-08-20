@@ -34,14 +34,14 @@ import Foundation
   var fileSize:Int = 0
   var session:URLSession?
 
-  static let instance = WebDavTransferManager()
+  @objc static let instance = WebDavTransferManager()
 
   override init() {
     active = false
     paused = false
   }
 
-  func enqueueTransfer(_ context: TransferContext) {
+  @objc func enqueueTransfer(_ context: TransferContext) {
     transfers.append(context)
     ShowStatusView()
     dispatchNextTransfer()
@@ -138,7 +138,7 @@ import Foundation
     return (transfers.count > 0 || active)
   }
 
-  func queueSize() -> Int {
+  @objc func queueSize() -> Int {
     return transfers.count
   }
 

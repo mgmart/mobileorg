@@ -22,7 +22,6 @@
 
 
 import XCTest
-@testable import MobileOrg
 
 class String_RegexTests: XCTestCase {
 

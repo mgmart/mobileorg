@@ -26,7 +26,7 @@ import Foundation
 public extension NSString {
 
 
-  func componentsSeparatedBy(regex: String) -> Array<String> {
+  @objc func componentsSeparatedBy(regex: String) -> Array<String> {
 
     guard let re = try? NSRegularExpression(pattern: regex, options: [])
       else { return [] }
@@ -41,7 +41,7 @@ public extension NSString {
   }
 
 
-  func arrayOfCaptureComponentsMatchedBy(regex: String) -> Array<Array<String>> {
+  @objc func arrayOfCaptureComponentsMatchedBy(regex: String) -> Array<Array<String>> {
     let capture = self.captureComponentsMatchedBy(regex: regex)
     if capture.count > 0 {
       let ret:[Array<String>] = [capture]
@@ -50,7 +50,7 @@ public extension NSString {
     return []
   }
 
-  func captureComponentsMatchedBy(regex: String) -> Array<String> {
+  @objc func captureComponentsMatchedBy(regex: String) -> Array<String> {
 
     do {
       var result:[String] = []
@@ -60,7 +60,7 @@ public extension NSString {
       let matches = rgx.matches(in: swiftString, options: [], range: NSRange(location: 0, length: swiftString.characters.count))
       for match in matches {
         for n in 0..<match.numberOfRanges {
-          let range = match.rangeAt(n)
+          let range = match.range(at: n)
           // This should not happen 🙄
           guard range.location <= swiftString.characters.count else {
             print("\(swiftString) -- \(range.location) <= \(swiftString.characters.count)")
@@ -77,13 +77,13 @@ public extension NSString {
     }
   }
 
-  func rangeOf(regex: String) -> NSRange {
+  @objc func rangeOf(regex: String) -> NSRange {
     let range = NSMakeRange(0, self.length)
     let match = self.range(of: regex, options: .regularExpression, range: range)
     return match
   }
 
-  func isMatchedBy(regex: String) -> Bool {
+  @objc func isMatchedBy(regex: String) -> Bool {
     let range = NSMakeRange(0, self.length)
     let match = self.range(of: regex, options: .regularExpression, range: range)
     if match.location == NSNotFound {
@@ -93,7 +93,7 @@ public extension NSString {
   }
 
 
-  func stringByReplacingOccurrencesOf(regex: String, withString: String) -> String {
+  @objc func stringByReplacingOccurrencesOf(regex: String, withString: String) -> String {
 
     let rgx = try! NSRegularExpression(pattern: regex,
                                          options: NSRegularExpression.Options.caseInsensitive)
